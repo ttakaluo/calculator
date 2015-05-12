@@ -11,8 +11,6 @@ void calculate(const int argc, char** argv){
 
 	//Really bad algoritm following...
 
-	
-
 	int i;
 	// Expects argc/2-1 operators and argc/2+1 values
 
@@ -29,19 +27,24 @@ void seperate(char* list){
 	//read number/operator
 	
 	int i=1;
-	char c[10] = {};
+	int number=0;
 
 	for(i = 0; list[i] != '\0'; i++){
 		
+	//	printf("%c\n", list[i]);
 	
-		if(isdigit(list[i])){
-			printf("Found a number\n");
-			strcat(c,&list[i]);		
-		}
-		if(list[i] == '*' || list[i] == '/' || list[i] == '+' || list[i] == '-'){
-			printf("Found an operator.\n");	
-		}
-		printf("%s\n", c);
+        	if(isdigit(list[i])){
+        		printf("Found a number\n");
+        		number = &list[i];
+        	}
+        	if(list[i] == '*' || list[i] == '/' || list[i] == '+' || list[i] == '-'){
+        		printf("Found an operator %c.\n", &list[i]);	
+
+        	//now process last number found
+
+        	printf("%d\n", number);
+        	number = 0;
+        	}
 	}
 }
 		
@@ -53,7 +56,6 @@ int main(const int argc, char** argv){
 	char argument_line[100] = {};
 	for(i = 1; i < argc; i++){
 
-		printf("Argument %d is %s\n", i, argv[i]);
 		strcat(argument_line, argv[i]);
 	}
 	//printf("The combined argument_line is %s\n", argument_line);
